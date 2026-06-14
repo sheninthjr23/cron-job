@@ -1,7 +1,7 @@
-const https = require("http");
+const https = require("https");
 
 const CONFIG = {
-  url: "http://localhost:3000/api/cron/process-scheduled",
+  url: "https://hanxes-2.vercel.app/api/cron/process-scheduled",
   token: "9da630f338abe1e6468653c151bcb0fc",
   intervalMs: 60 * 1000, // 1 minute
 };
@@ -18,7 +18,7 @@ function hitEndpoint() {
 
   const options = {
     hostname: urlObj.hostname,
-    port: urlObj.port || 3000,
+    port: 443, // HTTPS port
     path: urlObj.pathname,
     method: "GET",
     headers: {
