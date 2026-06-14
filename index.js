@@ -1,4 +1,5 @@
 const https = require("https");
+const http = require("http");
 
 const CONFIG = {
   url: "https://hanxes-2.vercel.app/api/cron/process-scheduled",
@@ -18,7 +19,7 @@ function hitEndpoint() {
 
   const options = {
     hostname: urlObj.hostname,
-    port: 443, // HTTPS port
+    port: 443,
     path: urlObj.pathname,
     method: "GET",
     headers: {
@@ -47,6 +48,15 @@ function hitEndpoint() {
 
   req.end();
 }
+
+// Dummy HTTP server — required for Render Web Service to stay alive
+const PORT = process.env.PORT || 3001;
+http.createServer((req, res) => {
+  res.writeHead(200);
+  res.end("Cron scheduler is running ✅");
+}).listen(PORT, () => {
+  console.log(`🌐 Health check server listening on port ${PORT}`);
+});
 
 // Fire immediately on start, then every minute
 console.log(`🚀 Cron scheduler started — hitting every 60 seconds`);
