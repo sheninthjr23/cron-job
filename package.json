@@ -1,0 +1,9 @@
+{
+  "name": "cron-scheduler",
+  "version": "1.0.0",
+  "description": "Hits /api/cron/process-scheduled every 1 minute",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  }
+}
